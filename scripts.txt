@@ -1,0 +1,10 @@
+1 Exodus
+4 "(findDisplay 46) displayAddEventHandler"
+4 "46) displayRemoveAllEventhandlers ""Char"
+4 bypass2
+4 "_KEYDOWN_"
+4 "KeyUp"
+4 "Bo_GBU12_LGB"
+4 nukepos
+4 _caughtxxxx
+4 geld

@@ -1,0 +1,26 @@
+1 ""
+4 _xcompiled
+4 loadFile
+4 disableUserInput
+4 hideObject
+4 "nearestObject[vehicle player,"Car"] setdamage 1;"
+4 "_spawnAIS = this;"
+4 dayz_serverObjectMonitor
+4 "Alexstrng_center = createCenter west;"
+4 "TTT5_Str_unit=this"
+4 "curPlayer allowDamage false;"
+4 "playMusic "EP1_Track02";"
+4 "money_limit=99999999999;"
+4 "bank_limit=99999999999;"
+4 "_strExecCode = 'if (isnil ("bInvisibleOn")) then {objMYPlayer hideObject true;};"
+4 "Kontostand = (Kontostand+5000000);"
+4 "_strExecCode = _strExecCode + 'disableUserInput true;};"
+4 "sCode = sCode + 'cpbLoops = 20;"
+4 "_scode = _scode + 'for [{_x=0}, {_x < ammoCount}, {_x=_x+1}] do{';"
+4 "onMapSingleClick "vehicle player setPos _pos; onMapSingleClick '';true;"
+4 "_sCodeExec = 'curPlayer allowDamage false;"
+4 "xscode = 'player setpos [getPos player select 0,getPos player select 1,(getPos player select 2)+5];"
+4 nukepos
+4 _caughtxxxx
+4 _STAR_is_AWESOME
+4 "x select 0"
