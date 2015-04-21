@@ -86,7 +86,7 @@ onEachFrame {
 				hours = hours + 1;
 				minutes = 0;
 				call GC_deleteVehicles;
-				if (scriptDone actualconvoy_handle) then { actualconvoy_handle = [] spawn GC_runConvoy; actualconvoy_handle = _t;};
+				//if (scriptDone actualconvoy_handle) then { actualconvoy_handle = [] spawn GC_runConvoy; actualconvoy_time = _t;};
 				//if (hours % 3 == 0) then {call GC_dumpAccounts;};
 			};
 		};

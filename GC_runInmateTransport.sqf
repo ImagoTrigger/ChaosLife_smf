@@ -155,7 +155,7 @@ format["server globalchat ""The transport boat has arrived! Civs: kill the capta
 	_cash = (playersNumber west)*10000;
 	if(_cash < 100000) then {_cash = 100000};
 	format['
-		boatconvoyaction = %1 addaction ["Steal money","gc\client\GC_FNC_noScript.sqf","boatconvoyhascash=false; publicvariable ""boatconvoyhascash"";  [""cash"", %2] call INV_AddInventoreItem; [""GC_Good2"",[""CHAOS LIFE PRISONER TRANSPORT"",""You stole $%2!""]] spawn bis_fnc_showNotification;",1,false,true,"","_this distance convoyboat <= 7 and boatconvoyhascash and isciv and (!alive (driver convoyboat) or isnull (driver convoyboat))"];
+		boatconvoyaction = %1 addaction ["Steal money","gc\client\GC_FNC_noScript.sqf","boatconvoyhascash=false; publicvariable ""boatconvoyhascash"";  [""cash"", %2] call INV_AddInventoreItem; [""GC_Good2"",[""CHAOS LIFE PRISONER TRANSPORT"",""You stole $%2!""]] spawn bis_fnc_showNotification;",1,false,true,"","_this distance convoyboat <= 7 and boatconvoyhascash and isciv and (!alive boatconvoysoldier)"];
 		boatconvoyaction2 = %4 addaction ["Free prisoner","gc\client\GC_FNC_noScript.sqf","boatconvoyhascash=false; publicvariable ""boatconvoyhascash"";  [""cash"", %2] call INV_AddInventoreItem; [""GC_Good2"",[""CHAOS LIFE PRISONER TRANSPORT"",""You freed %3 and got a reward of $%2!""]] spawn bis_fnc_showNotification;",1,false,true,"","_this distance boatinmate <= 7 and boatconvoyhascash and isciv and (!alive (driver convoyboat) or isnull (driver convoyboat))"];
 		boatconvoyaction3 =  %4 addaction ["Take prisoner", "gc\client\GC_FNC_noScript.sqf", "[%1] join (group player); [""GC_Good2"",[""CHAOS LIFE PRISON GUARD"",""Lead the inmate to base or you will fail!""]] spawn bis_fnc_showNotification;",1,false,true,"","iscop and _this distance boatinmate < 5 and !(boatinmate in units group _this)"];
 	',(_this select 0),_cash,(_this select 1),(_this select 2)] call broadcast;
@@ -207,7 +207,7 @@ while {true} do {
 		_added = true;
 		boatconvoygroup setbehaviour "AWARE";
 		boatconvoygroup setCombatMode "RED";
-		"if (isciv) then {server sidechat ""The captain is dead. Steal the money aboard or free the prisoner."";} else {server sidechat ""The the captain is dead. Get in his boat and stop it near the canal going to base in Marina Bay"";};" call broadcast;
+		"if (isciv) then {server sidechat ""The captain is dead. Steal the money aboard or free the prisoner."";} else {server sidechat ""The the captain is dead. Get in his boat and beach it near the canal going to base in Marina Bay"";};" call broadcast;
 		convoyboat setVehicleLock "unlocked";
 		convoyboat lock 0;
 		/*
@@ -312,7 +312,14 @@ while {true} do {
 		boatconvoysoldier commandmove getmarkerpos "policebase";
 		_counter = 0;
 		_landed = true;
-		'convoyboat hideobject true;convoyboat enablesimulation false;'call broadcast;
+		// 'convoyboat hideobject true;convoyboat enablesimulation false;'call broadcast;
+convoyboat spawn {
+	_this setfuel 0;
+	sleep 4;
+	_this setVehicleLock "locked";
+	_this lock 2;
+
+};
 		diag_log "boat unloaded";
 	};	
 	if (vehicle boatinmate in list CopBaseTrigger) exitwith
@@ -392,5 +399,6 @@ deletevehicle boatconvoyguard4;
 deletevehicle boatconvoysoldier;
 deletevehicle boatinmate;
 deletemarker "convoyboat";
+deletevehicle convoyboat;
 
 diag_log text format ["finished %1 at %2",__FILE__,time];

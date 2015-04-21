@@ -100,8 +100,10 @@ if (isnil "_keys") then {
 		_keys = call compile _output;
 		_newkeys = [];
 		{
-			if (!isnil "_x" and _x in INV_ServerVclArray) then {
+			if (!isnil "_x") then {
+if (_x in INV_ServerVclArray) then {
 				_newkeys = _newkeys + [_x];
+};
 			};
 		} foreach _keys;
 		_pair = ["INV_VehicleArray",_newkeys];
