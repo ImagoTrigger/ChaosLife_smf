@@ -312,14 +312,13 @@ while {true} do {
 		boatconvoysoldier commandmove getmarkerpos "policebase";
 		_counter = 0;
 		_landed = true;
-		// 'convoyboat hideobject true;convoyboat enablesimulation false;'call broadcast;
-convoyboat spawn {
-	_this setfuel 0;
-	sleep 4;
-	_this setVehicleLock "locked";
-	_this lock 2;
+		
+		convoyboat spawn {
+			_this setfuel 0;
+			sleep 8;
+			deletevehicle _this;
 
-};
+		};
 		diag_log "boat unloaded";
 	};	
 	if (vehicle boatinmate in list CopBaseTrigger) exitwith
