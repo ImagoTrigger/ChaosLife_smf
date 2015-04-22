@@ -9,6 +9,6 @@ IF NOT EXIST Servermissionfile (
 )
 CD "Servermissionfile"
 CALL git fetch origin
-CALL git reset --hard origin/!branchName!
+CALL git reset --hard origin/master
 cd ..
 start /WAIT /ABOVENORMAL arma3.exe -client -name=ChaosBot -connect=23.99.221.156 -port=2302
